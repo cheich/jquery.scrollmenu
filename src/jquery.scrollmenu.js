@@ -1,5 +1,5 @@
 /*!
- * jquery.scrollmenu.js v0.4 - 2015-10-31
+ * jquery.scrollmenu.js v0.4.1 - 2015-11-02
  * Copyright 2014 Christoph Heich | ...
  * Released under the MIT license | ...
  */
@@ -124,14 +124,14 @@
             
             // Generate a new ID, if not exists
             if (typeof id == 'undefined') {
-                var id = item.text().replace(/(\s+)|([\%#\&\"\']+)/g, function(str, p1, p2) {
-                    if (p1) return '-';
-                    if (p2) return '';
+                var id = item.text().replace(/(\s+)|(#+)/g, function(str, p1, p2) {
+                    if (p1) return '-'; // Replace spaces
+                    if (p2) return ''; // Replace '#'
                 }).toLowerCase();
             }
 
             // Make it unique, if necessary
-            if (document.getElementById(id) != null) {
+            if (!id || $(document.getElementById(id)).length) {
                 id = generateUniqueId(id + '-');
             }
             
@@ -147,7 +147,7 @@
          */
         var generateUniqueId = function(prefix = '', suffix = '') {
             var id = Math.floor(Math.random() * 26) + Date.now();
-            if (document.getElementById(id) != null) {
+            if ($(document.getElementById(id)).length) {
                 return generateUniqueId(prefix, suffix);
             }
             return prefix + id + suffix;
@@ -155,17 +155,21 @@
         
         
         /** 
-         * ==========================================================
-         * = BOF UNDER CONSTRUCTION
-         * ==========================================================
+         * Bind scroll event
+         * Removes and sets all required classes to the menu.
          */
         var onScroll = function() {
             ul.find('li').removeClass(opts.activeClass);
-            $('[id]').each(function() {
+            $('[id]').filter(':header').each(function() {
                 if ($(this).offset().top <= $(window).scrollTop() + opts.offset) {
                     if ($(this).nextAll('[id]').length == 0 || $(this).nextAll('[id]').offset().top > $(window).scrollTop() + opts.offset) {
                         // Get current element
-                        var activeLi = $('ul li a[href="#' + $(this).attr('id') + '"]').parent();
+                        var headerId = $(this).attr('id');
+                        
+                        // Using `.filter()` don't need to escape special characters
+                        var activeLi = ul.find('li a').filter(function() {
+                            return $(this).attr('href') == '#' + headerId;
+                        }).parent();
                         
                         // Add `.active` class to current
                         activeLi.addClass(opts.activeClass);
@@ -178,12 +182,6 @@
                 }
             });
         };
-
-        /** 
-         * ==========================================================
-         * = EOF UNDER CONSTRUCTION
-         * ==========================================================
-         */
         
         /**
          * Scroll to an anchor
@@ -191,13 +189,13 @@
         var scrollTo = function() {
             ul.find('a').click(function(e) {
                 e.preventDefault();
-                var hash = this.hash;
-                var offsetTop = $(hash).offset().top;            
+                var id = this.hash.substr(1);
+                var offsetTop = $(document.getElementById(id)).offset().top;
                 
                 $('html, body').animate({
                     scrollTop: offsetTop,
                 }, opts.speed, function() {
-                    window.location.hash = hash;
+                    window.location.hash = id;
                 });
             });
         };
@@ -264,7 +262,7 @@
      * ==========================================================
      */
     $.fn.scrollmenu.defaults = {
-        start: 'h2',           // Start at this header; can also be a selector, but there have to be an integer that can be increased
+        start: 'h2',           // Start at this header
         depth: 2,              // Depth from `start`point; 0 for disabled depth
         speed: 400,            // Scroll speed when click on a menu item
         offset: 0,             // Scroll position offset; the higher the earlier is the header selected
