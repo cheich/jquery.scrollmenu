@@ -2,8 +2,10 @@
 
 ## To-do
 
- * Add README.md and documentation
- * Add LICENSE
+ * [ ] Add README.md and documentation
+ * [ ] Add LICENSE
+ * [ ] Add Bower and Composer
+ * [ ] Add jQuery as dependency
 
 ## Release Notes
 

@@ -1,0 +1,29 @@
+{
+  "name": "jquery.scrollmenu",
+  "description": "",
+  "version": "0.5.0",
+  "title": "jQuery Scrollmenu",
+  "keywords": [
+    "jquery",
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "scrollmenu",
+    "scroll-menu"
+  ],
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cheich/jquery.scrollmenu.git"
+  },
+  "author": {
+    "name": "Christoph Heich",
+    "url": "http://christoph-heich.de"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheich/jquery.scrollmenu/issues"
+  },
+  "devDependencies": {}
+}

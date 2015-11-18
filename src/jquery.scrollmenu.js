@@ -19,7 +19,7 @@
         var opts = {};
 
         /**
-         * Current index and deep index
+         * Current index and deep index.
          *
          * @type {Integer}
          */
@@ -27,12 +27,16 @@
         var deepIndex = 0;
 
         /**
+         * Whole menu.
+         * 
          * @type {jQuery Object}
          */
         var menu;
 
 
         /**
+         * Set to 'true' while jumping to a header.
+         * 
          * @type {boolean}
          */
         var isJumpingTo = false;
@@ -202,14 +206,14 @@
         var onScroll = function() {
             // Toggle classes while scrolling (special on jumping)
             if (!(!opts.toggleWhileJumping && isJumpingTo)) {
-                toggleClasses();
+                setClasses();
             }
         };
         
         /**
-         * Toggle all classes
+         * Set and reset all classes as required
          */
-        var toggleClasses = function() {
+        var setClasses = function() {
             var current = getCurrent();
         
             // Find active `<li>`.
@@ -246,7 +250,7 @@
                 window.location.hash = id;
                 
                 if (!opts.toggleWhileJumping) {
-                    toggleClasses();                    
+                    setClasses();                    
                 }
                 
                 isJumpingTo = false;
@@ -347,7 +351,7 @@
         jumpSpeed:              400,                        // Scroll speed when click on a menu item; 0 for disabling.
         offset:                 0,                          // Scroll position offset; the higher the earlier is the header selected.
         toggleWhileJumping:     false,                      // Toggle classes while jumping (scrolling) to a header.
-        disableHeaderSelector:  '[data-disable="true"]',    // Selector to disable a header. Will used in `:not()` function  
+        disableHeaderSelector:  '[data-disable="true"]',    // Selector to disable a header. Will be used within the `:not()` function.
         activeClass:            'active',                   // Class name for current list item.
         parentClass:            'active',                   // Class name for parent list item of the current item.
         menuClass:              'menu',                     // Class name for the root list.
