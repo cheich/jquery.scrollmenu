@@ -1,8 +1,9 @@
 {
   "name": "jquery.scrollmenu",
-  "description": "",
-  "version": "0.5.0",
+  "description": "Build automatically multidimensional menus from headings.",
+  "version": "0.9.0",
   "title": "jQuery Scrollmenu",
+  "homepage": "https://github.com/cheich/jquery.scrollmenu",
   "keywords": [
     "jquery",
     "jquery-plugin",
@@ -25,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/cheich/jquery.scrollmenu/issues"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-header": "^1.7.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1"
+  }
 }
