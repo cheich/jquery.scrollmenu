@@ -1,0 +1,25 @@
+{
+  "name": "jquery.scrollmenu",
+  "description": "Build automatically multidimensional menus from headings.",
+  "main": "dist/jquery.scrollmenu.js",
+  "authors": [
+    "Christoph Heich"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "jquery",
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "scrollmenu",
+    "scroll-menu"
+  ],
+  "homepage": "https://github.com/cheich/jquery.scrollmenu",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
