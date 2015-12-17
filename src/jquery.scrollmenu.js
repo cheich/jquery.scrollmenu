@@ -1,5 +1,10 @@
 
-'use strict';
+/* global
+  $: false,
+  jQuery: false,
+  window: false,
+  document: false
+*/
 
 (function($) {
 
@@ -13,19 +18,27 @@
     /**
      * @type {Object}
      */
+    var data;
+
+    /**
+     * @type {Object}
+     */
     var opts = {};
 
     /**
-     * Current index and deep index.
-     *
+     * Current deep index.
      * @type {Integer}
      */
-    var index = 0;
     var deepIndex = 0;
 
     /**
+     * Counter for generating unique IDs - increased by one if ID exists.
+     * @type {Integer}
+     */
+    var uniqueId = 0;
+
+    /**
      * Whole menu.
-     *
      * @type {jQuery Object}
      */
     var menu;
@@ -33,20 +46,16 @@
 
     /**
      * Set to 'true' while jumping to a header.
-     *
      * @type {boolean}
      */
     var isJumpingTo = false;
 
-    /**
-     * ==========================================================
-     * = Private functions
-     * ==========================================================
-     */
+    ////////////////////////
+    // Private functions  //
+    ////////////////////////
 
     /**
      * Initialization
-     *
      * @param {object} settings - Options that should overwrite the defaults.
      */
     var init = function(settings) {
@@ -77,7 +86,6 @@
 
     /**
      * Build list recursively
-     *
      * @param {jQuery object} items - All headers in this level.
      * @return {jQuery object} Unordered list
      */
@@ -85,7 +93,7 @@
       var menu = $('<ul />');
 
       // Current items
-      items.each(function(index, item) {
+      items.each(function(i, item) {
         item = buildAnchor($(item));
         var li = $('<li />');
         li.append(buildReference($(item)));
@@ -113,12 +121,12 @@
 
     /**
      * Build an `<a>` element from an item.
-     *
      * @param {jQuery object} item
      * @return {jQuery object}
      */
     var buildReference = function(item) {
       var a = $('<a />');
+      uniqueId = 0;
 
       a.text(item.text());
       a.attr('href', '#' + item.attr('id'));
@@ -127,8 +135,7 @@
     };
 
     /**
-     * Build an anchor on the current item.
-     *
+     * Build an anchor (ID) for the current item.
      * @param {jQuery object} item
      * @return {jQuery object}
      */
@@ -136,7 +143,7 @@
       var id = item.attr('id');
 
       // Generate a new ID, if not exists
-      if (typeof id == 'undefined') {
+      if (typeof id === 'undefined') {
         id = item.text().replace(/(\s+)|(#+)/g, function(str, p1, p2) {
           if (p1) return '-'; // Replace spaces
           if (p2) return ''; // Replace '#'
@@ -144,8 +151,12 @@
         item.data('scrollmenu', { generatedId: id });
       }
 
+      console.log($('[id="' + id + '"]').length);
+
       // Make it unique, if necessary
-      if (!id || $(document.getElementById(id)).length) {
+      // The `[id="' + id + '"]` selector is the only way to check for
+      // duplicated IDs
+      if (!id || $('[id="' + id + '"]').length > 1) {
         var data = { oldId: id };
 
         id = generateUniqueId(id + '-');
@@ -160,25 +171,24 @@
 
     /**
      * Generate a new unique id
-     *
      * @param {String} prefix
      * @param {String} suffix
      * @return {String}
      */
     var generateUniqueId = function(prefix, suffix) {
-      prefix = typeof prefix !== 'undefined' ? prefix : '';
-      suffix = typeof prefix !== 'undefined' ? prefix : '';
+      prefix = (typeof prefix !== 'undefined') ? prefix : '';
+      suffix = (typeof suffix !== 'undefined') ? suffix : '';
+      uniqueId++;
 
-      var id = Math.floor(Math.random() * 26) + Date.now();
+      var id = prefix + uniqueId + suffix;
       if ($(document.getElementById(id)).length) {
         return generateUniqueId(prefix, suffix);
       }
-      return prefix + id + suffix;
+      return id;
     };
 
     /**
      * Get current ID
-     *
      * @param {jQuery object}
      */
     var getCurrent = function() {
@@ -230,7 +240,6 @@
 
     /**
      * Jump to a heading
-     *
      * @param {string} id - The ID to jump to
      * @param {integer} Scroll speed
      */
@@ -254,16 +263,14 @@
       });
     };
 
-    /**
-     * ==========================================================
-     * = Public Methods
-     * ==========================================================
-     */
+    ////////////////////
+    // Public Methods //
+    ////////////////////
+
     var methods = {
 
       /**
        * Refresh
-       *
        * @param {object} settings - New settings
        */
       refresh: function(settings) {
@@ -279,7 +286,6 @@
 
       /**
        * Destroyer
-       *
        * Remove all data, classes and inserted elements.
        */
       destroy: function() {
@@ -305,7 +311,6 @@
 
       /**
        * Get the built menu
-       *
        * @return {jQuery Object} Unordered list
        */
       get: function() {
@@ -313,11 +318,9 @@
       }
     };
 
-    /**
-     * ==========================================================
-     * = Plugin
-     * ==========================================================
-     */
+    /////////////
+    // Plugin  //
+    /////////////
 
     if (typeof elem.data('scrollmenu') === 'undefined') {
       // Init
@@ -337,11 +340,10 @@
     return elem;
   };
 
-  /**
-   * ==========================================================
-   * = Default Options
-   * ==========================================================
-   */
+  /////////////////////
+  // Default Options //
+  /////////////////////
+
   $.fn.scrollmenu.defaults = {
     start:                  'h2',                       // Start at this header.
     depth:                  2,                          // Depth from `start` point; 0 for disabling depth selectors.

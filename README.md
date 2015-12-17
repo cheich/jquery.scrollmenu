@@ -120,6 +120,9 @@ Default: `'menu'`
 Type: `String`
 
 ## Release Notes
+### v0.9.1
+- Fixed generating IDs
+
 ### v0.9.0
 - Add README.md and documentation
 - Add LICENSE
@@ -133,7 +136,7 @@ Type: `String`
 - Don't set default parameters since it comes with ECMAScript 6
 
 ### v0.4.1
-Some bug-fixes
+- Some bug-fixes
 
 ### v0.4
-First pre-release
+- First pre-release
