@@ -151,8 +151,6 @@
         item.data('scrollmenu', { generatedId: id });
       }
 
-      console.log($('[id="' + id + '"]').length);
-
       // Make it unique, if necessary
       // The `[id="' + id + '"]` selector is the only way to check for
       // duplicated IDs
