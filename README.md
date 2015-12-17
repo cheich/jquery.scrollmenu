@@ -6,7 +6,7 @@ It will automatically walk through your headings and build anchors and IDs.
 ### Insert the JavaScript file
 Just insert the JavaScript after the jQuery library
 
-```
+```html
 <script type="text/javascript" src="path/to/jquery.scrollmenu.js"></script>
 ```
 
@@ -16,10 +16,10 @@ wherever you want:
 
 ```javascript
 (function($) {
-    $(document).ready(function() {
-        var menu = $('body').scrollmenu(/* options */);
-        $('#nav').append(menu.scrollmenu('get'));
-    });
+  $(document).ready(function() {
+    var menu = $('body').scrollmenu(/* options */);
+    $('#nav').append(menu.scrollmenu('get'));
+  });
 }(jQuery));
 ```
 
@@ -29,15 +29,15 @@ If you want to hide all second-level sub-menus you can use this snippet:
 
 ```scss
 ul.menu {
-    ul {
-        display: none;
-    }   
-    
-    li.active {
-        > ul {
-            display: block !important; 
-        }
+  ul {
+    display: none;
+  }   
+
+  li.active {
+    > ul {
+      display: block !important;
     }
+  }
 }
 ```
 
@@ -45,11 +45,11 @@ Or if you just use CSS:
 
 ```css
 ul.menu ul {
-    display: none;
+  display: none;
 }   
-    
+
 ul.menu li.active > ul {
-    display: block !important; 
+  display: block !important;
 }
 ```
 
@@ -121,16 +121,16 @@ Type: `String`
 
 ## Release Notes
 ### v0.9.0
- * Add README.md and documentation
- * Add LICENSE
- * Add Bower and npm
+- Add README.md and documentation
+- Add LICENSE
+- Add Bower and npm
 
 ### v0.5.0
- * Add refresh and destroy functions
- * Add option to not apply classes while scroll to an header
- * Add option to disable a header
- * Classes are missing after reloading
- * Don't set default parameters since it comes with ECMAScript 6
+- Add refresh and destroy functions
+- Add option to not apply classes while scroll to an header
+- Add option to disable a header
+- Classes are missing after reloading
+- Don't set default parameters since it comes with ECMAScript 6
 
 ### v0.4.1
 Some bug-fixes
