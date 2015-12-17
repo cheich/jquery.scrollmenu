@@ -120,6 +120,9 @@ Default: `'menu'`
 Type: `String`
 
 ## Release Notes
+### v0.9.2
+- Remove debug information
+
 ### v0.9.1
 - Fixed generating IDs
 
