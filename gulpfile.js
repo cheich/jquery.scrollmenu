@@ -2,8 +2,6 @@
  * Gulpfile
  */
 
-// jshint node: true
-
 'use strict';
 
 var gulp = require('gulp');
@@ -22,10 +20,10 @@ var banner = '/*!\n' +
              ' */\n';
 
 gulp.task('default', function() {
-    return gulp.src('src/jquery.scrollmenu.js')
-        .pipe(sourcemaps.init())
-        .pipe(minify())
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('./dist'));
+  return gulp.src('src/jquery.scrollmenu.js')
+    .pipe(sourcemaps.init())
+    .pipe(minify())
+    .pipe(header(banner, { pkg: pkg }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist'));
 });

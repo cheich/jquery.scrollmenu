@@ -1,0 +1,7 @@
+{
+  "node": true,
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "predef": [ "jQuery", "window" ]
+}
