@@ -77,8 +77,15 @@ Default: `0`
 
 Type: `Integer`
 
-### `offset`
-Scroll position offset; the higher the earlier is the header selected.
+### `offsetScroll`
+Amount of pixels from the window top.
+
+Default: `0`
+
+Type: `Integer`
+
+### `offsetActive`
+Active item offset. Will set the active class on the menu earlier the higher it is.
 
 Default: `0`
 
@@ -94,7 +101,7 @@ Type: `Boolean`
 ### `disableHeaderSelector`
 Selector to disable a header. Will be used within the `:not()` function.
 
-Default: `'[data-disable="true"]'`
+Default: `'[disabled]'`
 
 Type: `jQuery selector`
 
@@ -119,7 +126,29 @@ Default: `'menu'`
 
 Type: `String`
 
+### `pushToHistory`
+Add to browser history (IE>9 required).
+
+Default: `true`
+
+Type: `Boolean`
+
+## Callbacks
+### `onJumpBefore(newId, oldId)`
+Fired before jumping to a header.
+
+### `onJumpAfter(newId, oldId)`
+Fired after jumping to a header.
+
 ## Release Notes
+### v0.10.0
+- Changed default disable selector to `[disabled]`
+- Code optimizations
+- New approach to set history (IE>9); Set history as opt-out
+- Added callbacks
+- Better offset (scroll- and active-offset are now separated)
+- Active classes now applied after DOM is ready (initial)
+
 ### v0.9.2
 - Remove debug information
 
