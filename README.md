@@ -73,7 +73,7 @@ Type: `Integer`
 ### `jumpSpeed`
 Scroll speed when click on a menu item; 0 for disabling.
 
-Default: `0`
+Default: `400`
 
 Type: `Integer`
 
