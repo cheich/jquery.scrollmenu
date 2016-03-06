@@ -188,7 +188,7 @@
 
   /**
    * Get current ID
-   * @param {jQuery object}
+   * @return {String}
    */
   var getCurrent = function() {
     var current = false;
