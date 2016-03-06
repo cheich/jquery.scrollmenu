@@ -141,6 +141,10 @@ Fired before jumping to a header.
 Fired after jumping to a header.
 
 ## Release Notes
+### v0.10.1
+- Fixed default `jumpSpeed` value in documentation
+- Added .jshintrc
+
 ### v0.10.0
 - Changed default disable selector to `[disabled]`
 - Code optimizations
