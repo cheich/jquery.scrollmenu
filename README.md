@@ -5,7 +5,7 @@ It will automatically walk through your headings and build anchors and IDs.
 ## To-do
 - First and last element are active even the viewport is out of the content
 - Add option to parse existing menu lists
-- Return jQuery list instead of the plug-in (?)
+- Return jQuery list instead of the plug-in object (?)
 - Make variable header selector like `h{n}` (?)
 
 ## How to start
@@ -154,7 +154,15 @@ Fired before jumping to a header.
 ### `onJumpAfter(newId, oldId)`
 Fired after jumping to a header.
 
+## License
+jQuery Scrollmenu is released under the [MIT license](LICENSE)
+
 ## Release Notes
+### v0.10.2
+- Replaced `disableHeaderSelector` with `not`.  
+  `disableHeaderSelector` is now marked as deprecated and will be removed
+  in the next major release.
+
 ### v0.10.1
 - Fixed default `jumpSpeed` value in documentation
 - Added .jshintrc
