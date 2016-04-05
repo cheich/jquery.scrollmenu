@@ -57,7 +57,8 @@
     opts = $.extend(true, {}, $.fn.scrollmenu.defaults, settings);
 
     // Find all first level items
-    var items = $(elem.find(opts.start).not(opts.disableHeaderSelector));
+    // TODO: Remove `.not(opts.disableHeaderSelector)` in next major release.
+    var items = $(elem.find(opts.start).not(opts.not).not(opts.disableHeaderSelector));
     menu = build(items).addClass(opts.menuClass);
 
     // Bind onScroll event
@@ -106,7 +107,8 @@
         });
 
         // Deep items
-        var deepItems = item.nextUntil(item[0].tagName, deepSelector).not(opts.disableHeaderSelector);
+        // TODO: Remove `.not(opts.disableHeaderSelector)` in next major release.
+        var deepItems = item.nextUntil(item[0].tagName, deepSelector).not(opts.not).not(opts.disableHeaderSelector);
         if (deepItems.length > 0) {
           deepIndex++;
           li.append(build(deepItems));
@@ -356,7 +358,8 @@
     offsetScroll:           0,              // Amount of pixels from the window top.
     offsetActive:           0,              // Active item offset. Will set the active class on the menu earlier the higher it is.
     toggleWhileJumping:     false,          // Toggle classes while jumping (scrolling) to a header.
-    disableHeaderSelector:  '[disabled]',   // Selector to disable a header. Will be used within the `:not()` function.
+    disableHeaderSelector:  '[disabled]',   // Selector to disable a header. Will be used within the `.not()` function.
+    not:                    '[disabled]',   // Selector or function to disable a header. Will be used within the `.not()` function.
     activeClass:            'active',       // Class name for current list item.
     parentClass:            'active',       // Class name for parent list item of the current item.
     menuClass:              'menu',         // Class name for the root list.

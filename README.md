@@ -2,6 +2,12 @@
 There is no easier way to build a menu as with _jQuery Scrollmenu_.
 It will automatically walk through your headings and build anchors and IDs.
 
+## To-do
+- First and last element are active even the viewport is out of the content
+- Add option to parse existing menu lists
+- Return jQuery list instead of the plug-in (?)
+- Make variable header selector like `h{n}` (?)
+
 ## How to start
 ### Insert the JavaScript file
 Just insert the JavaScript after the jQuery library
@@ -98,12 +104,20 @@ Default: `false`
 
 Type: `Boolean`
 
-### `disableHeaderSelector`
-Selector to disable a header. Will be used within the `:not()` function.
+### `disableHeaderSelector` (DEPRECATED, use `not` instead)
+
+Selector to disable a header. Will be used within the `.not()` function.
 
 Default: `'[disabled]'`
 
 Type: `jQuery selector`
+
+### `not`
+Selector or function to disable a header. Will be used within the `.not()` function.
+
+Default: `'[disabled]'`
+
+Type: `jQuery selector|function`
 
 ### `activeClass`
 Class name for current list item.
