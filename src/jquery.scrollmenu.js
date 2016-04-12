@@ -233,11 +233,13 @@
     // Add `.active` class to current.
     activeLi.addClass(opts.activeClass);
 
-    // Add `.active` class to parent.
-    var parent = activeLi.parents('li').addClass(opts.parentClass);
+    // Add `.active` class to parent (or to current, if there is no parent).
+    var parentLi = activeLi.parents('li');
+    parentLi = parentLi.length ? parentLi : activeLi;
+    parentLi.addClass(opts.parentClass);
 
-    // First, remove all `.active` classes.
-    activeLi.add(parent).siblings().removeClass(opts.activeClass);
+    // Remove all other `.active` classes.
+    activeLi.add(parentLi).siblings().removeClass(opts.activeClass).removeClass(opts.parentClass);
   };
 
   /**

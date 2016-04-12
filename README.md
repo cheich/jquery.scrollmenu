@@ -158,6 +158,10 @@ Fired after jumping to a header.
 jQuery Scrollmenu is released under the [MIT license](LICENSE)
 
 ## Release Notes
+### v0.10.3
+- `parentClass` will now be set to the current, if there is no parent `<li>`
+- Fixed resetting parent class
+
 ### v0.10.2
 - Replaced `disableHeaderSelector` with `not`.  
   `disableHeaderSelector` is now marked as deprecated and will be removed

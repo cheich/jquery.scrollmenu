@@ -1,7 +1,7 @@
 {
   "name": "jquery.scrollmenu",
   "description": "Build automatically multidimensional menus from headings.",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "title": "jQuery Scrollmenu",
   "homepage": "https://github.com/cheich/jquery.scrollmenu",
   "keywords": [
